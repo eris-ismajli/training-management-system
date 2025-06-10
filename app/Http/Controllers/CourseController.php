@@ -150,4 +150,22 @@ class CourseController extends Controller
 
         ]);
     }
+
+    public function allTrainers()
+    {
+        $trainers = User::where('role', 'trainer')->get();
+
+        return Inertia::render('Trainer/Trainers', [
+            'trainers' => $trainers
+        ]);
+    }
+
+    public function allStudents()
+    {
+        $students = User::where('role', 'student')->get();
+
+        return Inertia::render('Students/AllStudents', [
+            'students' => $students
+        ]);
+    }
 }

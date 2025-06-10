@@ -1,6 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
-import ValidateRedirection from '../Validation/ValidateRedirection';
+import { cardClass, modalClass, inputClass } from "@/Styles/ClassNames";
 
 import {
     BookCopy,
@@ -26,46 +26,37 @@ export default function Create() {
         toast.success('Course created successfully');
     };
 
+    const sidebarLinks = [
+        { href: '/courses', label: 'All Courses', icon: BookCopy },
+    ];
+
     return (
-        <AuthenticatedLayout>
+        <AuthenticatedLayout sidebarLinks={sidebarLinks} currentLink={"Add Course"} isDashboard={false}>
             <Head title="Add Course" />
             <div className="flex">
                 {/* Sidebar */}
-                <aside className="sticky top-0 h-screen w-64 bg-white shadow">
-                    <h2 className="w-full h-12 flex items-center gap-2 text-xl font-semibold text-white bg-gradient-to-r from-[#4c64c0] to-[#5aaee0] px-4">
-                        <LayoutDashboard className="w-5 h-5 text-white" />
-                        Add Course
-                    </h2>
 
-                    <nav className="flex flex-col gap-4 text-lg text-gray-700 font-medium px-2 py-8">
-                        <ValidateRedirection Component={Link} showIcon />
-                        <Link href="/courses" className="flex items-center gap-4 px-2 py-2 rounded hover:bg-indigo-100 transition">
-                            <BookCopy className="w-5 h-5" />
-                            <span>All Courses</span>
-                        </Link>
-                    </nav>
-                </aside>
                 <div className="flex-1 p-6">
-                    <div className="max-w-2xl mx-auto bg-white p-6 shadow rounded-lg">
+                    <div className="max-w-2xl mx-auto bg-white dark:bg-[#2A2A3B] text-gray-800 dark:text-white p-6 shadow rounded-lg">
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div>
-                                <label className="block font-medium text-sm text-gray-700">Title</label>
+                                <label className="block font-medium text-sm text-gray-700 dark:text-gray-200">Title</label>
                                 <input
                                     type="text"
                                     value={data.title}
                                     onChange={e => setData('title', e.target.value)}
-                                    className="w-full mt-1 px-4 py-2 border rounded-md"
+                                    className="w-full mt-1 px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#1E1E2F] text-gray-800 dark:text-white rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400"
                                     placeholder="Course Title"
                                 />
                                 {errors.title && <div className="text-sm text-red-500 mt-1">{errors.title}</div>}
                             </div>
 
                             <div>
-                                <label className="block font-medium text-sm text-gray-700">Description</label>
+                                <label className="block font-medium text-sm text-gray-700 dark:text-gray-200">Description</label>
                                 <textarea
                                     value={data.description}
                                     onChange={e => setData('description', e.target.value)}
-                                    className="w-full mt-1 px-4 py-2 border rounded-md"
+                                    className="w-full mt-1 px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#1E1E2F] text-gray-800 dark:text-white rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400"
                                     rows="4"
                                     placeholder="Course Description"
                                 />
@@ -73,31 +64,31 @@ export default function Create() {
 
                             <div className="flex gap-4">
                                 <div className="w-1/2">
-                                    <label className="block font-medium text-sm text-gray-700">Start Date</label>
+                                    <label className="block font-medium text-sm text-gray-700 dark:text-gray-200">Start Date</label>
                                     <input
                                         type="date"
                                         value={data.start_date}
                                         onChange={e => setData('start_date', e.target.value)}
-                                        className="w-full mt-1 px-4 py-2 border rounded-md"
+                                        className="w-full mt-1 px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#1E1E2F] text-gray-800 dark:text-white rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400"
                                     />
                                 </div>
                                 <div className="w-1/2">
-                                    <label className="block font-medium text-sm text-gray-700">End Date</label>
+                                    <label className="block font-medium text-sm text-gray-700 dark:text-gray-200">End Date</label>
                                     <input
                                         type="date"
                                         value={data.end_date}
                                         onChange={e => setData('end_date', e.target.value)}
-                                        className="w-full mt-1 px-4 py-2 border rounded-md"
+                                        className="w-full mt-1 px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#1E1E2F] text-gray-800 dark:text-white rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400"
                                     />
                                 </div>
                             </div>
 
                             <div>
-                                <label className="block font-medium text-sm text-gray-700">Category</label>
+                                <label className="block font-medium text-sm text-gray-700 dark:text-gray-200">Category</label>
                                 <select
                                     value={data.category}
                                     onChange={e => setData('category', e.target.value)}
-                                    className="w-full mt-1 px-4 py-2 border rounded-md"
+                                    className="w-full mt-1 px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#1E1E2F] text-gray-800 dark:text-white rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400"
                                 >
                                     <option value="">-- Select Category --</option>
                                     {categories.map((category) => (

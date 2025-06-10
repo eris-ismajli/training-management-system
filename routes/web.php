@@ -36,7 +36,8 @@ Route::get('/dashboard', function () {
         'stats' => [
             'courses' => Course::count(),
             'users' => User::count(),
-            'students' => User::where('role', 'student')->count(), // 👈 Add this
+            'students' => User::where('role', 'student')->count(), 
+            'trainers' => User::where('role', 'trainer')->count(), 
         ],
         'course_growth' => $courseGrowth,
         'category_distribution' => $categoryCounts,
@@ -183,6 +184,8 @@ Route::get('/trainer/students', function () {
     ]);
 })->middleware(['auth'])->name('trainer.students');
 
+Route::get('/trainers', [CourseController::class, 'allTrainers'])->name('trainer.trainers');
+Route::get('/students', [CourseController::class, 'allStudents'])->name('students.allStudents');
 
 Route::put('/courses/{course}/assign-trainer', [CourseController::class, 'assignTrainer'])->name('courses.assignTrainer');
 Route::post('/courses/{course}/enroll', [CourseController::class, 'enrollStudent'])->name('courses.enroll');

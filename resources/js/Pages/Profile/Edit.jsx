@@ -6,18 +6,13 @@ import UpdateProfileInformationForm from './Partials/UpdateProfileInformationFor
 
 export default function Edit({ mustVerifyEmail, status }) {
     return (
-        <AuthenticatedLayout
-            header={
-                <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Profile
-                </h2>
-            }
-        >
+        <AuthenticatedLayout currentLink={"Profile"} isDashboard={false}>
             <Head title="Profile" />
 
             <div className="py-12">
                 <div className="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
-                    <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8">
+                    <div className="bg-white dark:bg-[#2A2A3B] p-4 shadow sm:rounded-lg sm:p-8 text-gray-900 dark:text-white">
+
                         <UpdateProfileInformationForm
                             mustVerifyEmail={mustVerifyEmail}
                             status={status}
@@ -25,11 +20,11 @@ export default function Edit({ mustVerifyEmail, status }) {
                         />
                     </div>
 
-                    <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8">
+                    <div className="bg-white dark:bg-[#2A2A3B] p-4 shadow sm:rounded-lg sm:p-8 text-gray-900 dark:text-white">
                         <UpdatePasswordForm className="max-w-xl" />
                     </div>
 
-                    <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8">
+                    <div className="bg-white dark:bg-[#2A2A3B] p-4 shadow sm:rounded-lg sm:p-8 text-gray-900 dark:text-white">
                         <DeleteUserForm className="max-w-xl" />
                     </div>
                 </div>
